@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{865658CC-0C48-49D5-A168-21723D56D22C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D20Tek.CountryService", "src\D20Tek.CountryService\D20Tek.CountryService.csproj", "{5A0A2701-1F34-4304-8487-648E12C9AC60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A0A2701-1F34-4304-8487-648E12C9AC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0A2701-1F34-4304-8487-648E12C9AC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0A2701-1F34-4304-8487-648E12C9AC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0A2701-1F34-4304-8487-648E12C9AC60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C3D0840-EE4F-4156-9DAD-0EB52C23A42C}
+	EndGlobalSection
+EndGlobal
