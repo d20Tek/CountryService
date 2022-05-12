@@ -1,13 +1,24 @@
 //---------------------------------------------------------------------------------------------------------------------
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace D20Tek.CountryService
 {
     public class Program
     {
+        [ExcludeFromCodeCoverage]
         public static void Main(string[] args)
+        {
+            // Create and configure the application.
+            var app = CreateWebApplication(args);
+
+            // Run the application.
+            app.Run();
+        }
+
+        internal static WebApplication CreateWebApplication(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +30,7 @@ namespace D20Tek.CountryService
             // Configure web application.
             Configure(app, app.Environment, app as IEndpointRouteBuilder);
 
-            // Run the application.
-            app.Run();
+            return app;
         }
 
         internal static void ConfigureServices(IServiceCollection services)
@@ -44,7 +54,10 @@ namespace D20Tek.CountryService
             services.AddSwaggerGen();
         }
 
-        internal static void Configure(IApplicationBuilder app, IWebHostEnvironment env, IEndpointRouteBuilder endpointRoutes)
+        internal static void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
+            IEndpointRouteBuilder endpointRoutes)
         {
             // Configure the HTTP request pipeline.
             if (env.IsDevelopment())

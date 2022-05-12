@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{865658
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D20Tek.CountryService", "src\D20Tek.CountryService\D20Tek.CountryService.csproj", "{5A0A2701-1F34-4304-8487-648E12C9AC60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D20Tek.CountryService.UnitTests", "tests\D20Tek.CountryService.UnitTests\D20Tek.CountryService.UnitTests.csproj", "{FB7EC594-DDED-481B-9A14-BE9DA09D25BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{5A0A2701-1F34-4304-8487-648E12C9AC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A0A2701-1F34-4304-8487-648E12C9AC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A0A2701-1F34-4304-8487-648E12C9AC60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB7EC594-DDED-481B-9A14-BE9DA09D25BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7EC594-DDED-481B-9A14-BE9DA09D25BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7EC594-DDED-481B-9A14-BE9DA09D25BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7EC594-DDED-481B-9A14-BE9DA09D25BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

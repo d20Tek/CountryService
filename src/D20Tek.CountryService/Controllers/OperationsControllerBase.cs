@@ -13,8 +13,8 @@ namespace D20Tek.CountryService.Controllers
 
         public OperationsControllerBase(ILogger logger, TelemetryClient telemetryClient)
         {
-            this.Logger = logger;
-            this.TelemetryClient = telemetryClient;
+            this.Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.TelemetryClient = telemetryClient ?? throw new ArgumentNullException(nameof(telemetryClient));
             this._typeName = this.GetType().Name;
         }
 
@@ -22,67 +22,77 @@ namespace D20Tek.CountryService.Controllers
 
         protected TelemetryClient TelemetryClient { get; private set; }
 
-        protected async Task<ActionResult<T>> ControllerOperationAsync<T>(string controllerMethod, Func<Task<ActionResult<T>>> operation)
+        protected async Task<ActionResult<T>> ControllerOperationAsync<T>(
+            string controllerMethod,
+            Func<Task<ActionResult<T>>> operation)
         {
-            using var controllerOperation = this.TelemetryClient.StartOperation<RequestTelemetry>($"/{this._typeName}/{controllerMethod}");
+            using var controllerOp = this.TelemetryClient.StartOperation<RequestTelemetry>(
+                                        $"/{this._typeName}/{controllerMethod}");
+            var id = controllerOp.Telemetry.Id;
+            var name = controllerOp.Telemetry.Name;
 
             try
             {
-                this.Logger.LogTrace($"[{controllerOperation.Telemetry.Id}] Begin ControllerOperation '{controllerOperation.Telemetry.Name}'");
+                this.Logger.LogTrace($"[{id}] Begin ControllerOperation '{name}'");
                 var result = await operation();
-                this.Logger.LogTrace($"[{controllerOperation.Telemetry.Id}] End ControllerOperation '{controllerOperation.Telemetry.Name}'");
+                this.Logger.LogTrace($"[{id}] End ControllerOperation '{name}'");
                 return result;
             }
             catch (ArgumentException ex)
             {
-                controllerOperation.Telemetry.ResponseCode = StatusCodes.Status422UnprocessableEntity.ToString();
+                controllerOp.Telemetry.ResponseCode = StatusCodes.Status422UnprocessableEntity.ToString();
 
-                var controllerErrorMessage = $"[{controllerOperation.Telemetry.Id}] Controller '{controllerOperation.Telemetry.Name}' received invalid input. '{ex.Message}'";
-                this.Logger.LogWarning(controllerErrorMessage);
+                var errorMessage = $"[{id}] Controller '{name}' received invalid input. '{ex.Message}'";
+                this.Logger.LogWarning(errorMessage);
 
-                return this.StatusCode(StatusCodes.Status422UnprocessableEntity, controllerErrorMessage);
+                return this.StatusCode(StatusCodes.Status422UnprocessableEntity, errorMessage);
             }
             catch (Exception ex)
             {
-                controllerOperation.Telemetry.Success = false;
-                controllerOperation.Telemetry.ResponseCode = StatusCodes.Status500InternalServerError.ToString();
+                controllerOp.Telemetry.Success = false;
+                controllerOp.Telemetry.ResponseCode = StatusCodes.Status500InternalServerError.ToString();
 
-                this.Logger.LogError(ex, $"[{controllerOperation.Telemetry.Id}] Failed ControllerOperation '{controllerOperation.Telemetry.Name}' with errror '{ex.Message}'");
+                this.Logger.LogError(ex, $"[{id}] Failed ControllerOperation '{name}' with errror '{ex.Message}'");
 
-                var controllerErrorMessage = $"[{controllerOperation.Telemetry.Id}] An unexpected error occurred on the server.";
-                return this.StatusCode(StatusCodes.Status500InternalServerError, controllerErrorMessage);
+                var errorMessage = $"[{id}] An unexpected error occurred on the server.";
+                return this.StatusCode(StatusCodes.Status500InternalServerError, errorMessage);
             }
         }
 
-        protected ActionResult<T> ControllerOperation<T>(string controllerMethod, Func<ActionResult<T>> operation)
+        protected ActionResult<T> ControllerOperation<T>(
+            string controllerMethod,
+            Func<ActionResult<T>> operation)
         {
-            using var controllerOperation = this.TelemetryClient.StartOperation<RequestTelemetry>($"/{this._typeName}/{controllerMethod}");
+            using var controllerOp = this.TelemetryClient.StartOperation<RequestTelemetry>(
+                                                $"/{this._typeName}/{controllerMethod}");
+            var id = controllerOp.Telemetry.Id;
+            var name = controllerOp.Telemetry.Name;
 
             try
             {
-                this.Logger.LogTrace($"[{controllerOperation.Telemetry.Id}] Begin ControllerOperation '{controllerOperation.Telemetry.Name}'");
+                this.Logger.LogTrace($"[{id}] Begin ControllerOperation '{name}'");
                 var result = operation();
-                this.Logger.LogTrace($"[{controllerOperation.Telemetry.Id}] End ControllerOperation '{controllerOperation.Telemetry.Name}'");
+                this.Logger.LogTrace($"[{id}] End ControllerOperation '{name}'");
                 return result;
             }
             catch (ArgumentException ex)
             {
-                controllerOperation.Telemetry.ResponseCode = StatusCodes.Status422UnprocessableEntity.ToString();
+                controllerOp.Telemetry.ResponseCode = StatusCodes.Status422UnprocessableEntity.ToString();
 
-                var controllerErrorMessage = $"[{controllerOperation.Telemetry.Id}] Controller '{controllerOperation.Telemetry.Name}' received invalid input. '{ex.Message}'";
-                this.Logger.LogWarning(controllerErrorMessage);
+                var errorMessage = $"[{id}] Controller '{name}' received invalid input. '{ex.Message}'";
+                this.Logger.LogWarning(errorMessage);
 
-                return this.StatusCode(StatusCodes.Status422UnprocessableEntity, controllerErrorMessage);
+                return this.StatusCode(StatusCodes.Status422UnprocessableEntity, errorMessage);
             }
             catch (Exception ex)
             {
-                controllerOperation.Telemetry.Success = false;
-                controllerOperation.Telemetry.ResponseCode = StatusCodes.Status500InternalServerError.ToString();
+                controllerOp.Telemetry.Success = false;
+                controllerOp.Telemetry.ResponseCode = StatusCodes.Status500InternalServerError.ToString();
 
-                this.Logger.LogError(ex, $"[{controllerOperation.Telemetry.Id}] Failed ControllerOperation '{controllerOperation.Telemetry.Name}' with errror '{ex.Message}'");
+                this.Logger.LogError(ex, $"[{id}] Failed ControllerOperation '{name}' with errror '{ex.Message}'");
 
-                var controllerErrorMessage = $"[{controllerOperation.Telemetry.Id}] An unexpected error occurred on the server.";
-                return this.StatusCode(StatusCodes.Status500InternalServerError, controllerErrorMessage);
+                var errorMessage = $"[{id}] An unexpected error occurred on the server.";
+                return this.StatusCode(StatusCodes.Status500InternalServerError, errorMessage);
             }
         }
     }
