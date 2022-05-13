@@ -11,4 +11,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
+  <Import Project="..\D20Tek.CountryService.Common\D20Tek.CountryService.Common.projitems" Label="Shared" />
+
 </Project>

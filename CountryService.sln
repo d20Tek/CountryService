@@ -10,11 +10,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{865658
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D20Tek.CountryService", "src\D20Tek.CountryService\D20Tek.CountryService.csproj", "{5A0A2701-1F34-4304-8487-648E12C9AC60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D20Tek.CountryService", "src\D20Tek.CountryService\D20Tek.CountryService.csproj", "{5A0A2701-1F34-4304-8487-648E12C9AC60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D20Tek.CountryService.UnitTests", "tests\D20Tek.CountryService.UnitTests\D20Tek.CountryService.UnitTests.csproj", "{FB7EC594-DDED-481B-9A14-BE9DA09D25BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D20Tek.CountryService.UnitTests", "tests\D20Tek.CountryService.UnitTests\D20Tek.CountryService.UnitTests.csproj", "{FB7EC594-DDED-481B-9A14-BE9DA09D25BA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "D20Tek.CountryService.Common", "src\D20Tek.CountryService.Common\D20Tek.CountryService.Common.shproj", "{4B4B4C81-F078-4EA4-869F-26C0CE1B1E84}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\D20Tek.CountryService.Common\D20Tek.CountryService.Common.projitems*{4b4b4c81-f078-4ea4-869f-26c0ce1b1e84}*SharedItemsImports = 13
+		src\D20Tek.CountryService.Common\D20Tek.CountryService.Common.projitems*{5a0a2701-1f34-4304-8487-648e12c9ac60}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
