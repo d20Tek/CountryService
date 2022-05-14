@@ -8,7 +8,7 @@ namespace D20Tek.CountryService.Models
     {
         public string Name { get; set; } = string.Empty;
 
-        public string FullName { get; set; } = string.Empty;
+        public string OfficialName { get; set; } = string.Empty;
 
         public int Sovereignty { get; set; }
 

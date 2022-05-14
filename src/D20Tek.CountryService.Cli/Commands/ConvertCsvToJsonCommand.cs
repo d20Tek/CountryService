@@ -11,6 +11,8 @@ namespace D20Tek.CountryService.Cli.Commands
         public override async Task<int> ExecuteAsync(CommandContext context, BaseSettings settings)
         {
             AnsiConsole.WriteLine($"=> Executing command to convert CSV file to corresponding JSON.");
+            AnsiConsole.WriteLine($"   Args: Verbose={Enum.GetName<VerbosityLevel>(settings.Verbose)}");
+
             return 0;
         }
     }

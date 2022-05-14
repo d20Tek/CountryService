@@ -16,7 +16,7 @@ namespace D20Tek.CountryService.UnitTests.Models
             {
                 CountryId = 101,
                 Name = "Test",
-                FullName = "Testlandia",
+                OfficialName = "Testlandia",
                 Alpha2Code = "TS",
                 Alpha3Code = "TST",
                 Sovereignty = 0,
@@ -27,7 +27,7 @@ namespace D20Tek.CountryService.UnitTests.Models
             Assert.IsNotNull(code);
             Assert.AreEqual(101, code.CountryId);
             Assert.AreEqual("Test", code.Name);  
-            Assert.AreEqual("Testlandia", code.FullName);  
+            Assert.AreEqual("Testlandia", code.OfficialName);  
             Assert.AreEqual("TS", code.Alpha2Code);
             Assert.AreEqual("TST", code.Alpha3Code);
             Assert.AreEqual(0, code.Sovereignty);
