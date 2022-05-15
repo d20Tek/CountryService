@@ -6,22 +6,8 @@ using System.Threading.Tasks;
 namespace D20Tek.CountryService.Cli.UnitTests
 {
     [TestClass]
-    public class ProgramTests
+    public class CommandLineTests
     {
-        [TestMethod]
-        public void RegisterServices()
-        {
-            // arrange
-            var services = new ServiceCollection();
-
-            // act
-            var registrar = Program.ConfigureServices(services);
-
-            // assert
-            Assert.IsNotNull(registrar);
-            Assert.AreEqual(0, services.Count);
-        }
-
         [TestMethod]
         public async Task ConfiguredCommands()
         {
