@@ -1,7 +1,7 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Spectre.Console.Extensions.Injection;
+using D20Tek.Spectre.Console.Extensions;
 
 namespace D20Tek.CountryService.Cli
 {
@@ -9,8 +9,11 @@ namespace D20Tek.CountryService.Cli
     {
         public static async Task<int> Main(string[] args)
         {
-            var app = DependencyInjectionFactory.CreateCommandApp<Startup>();
-            return await app.RunAsync(args);
+            return await new CommandAppBuilder()
+                             .WithDIContainer()
+                             .WithStartup<Startup>()
+                             .Build()
+                             .RunAsync(args);
         }
     }
 }

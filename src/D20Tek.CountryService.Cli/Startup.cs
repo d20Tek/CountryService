@@ -3,22 +3,16 @@
 //---------------------------------------------------------------------------------------------------------------------
 using D20Tek.CountryService.Cli.Commands;
 using D20Tek.Spectre.Console.Extensions;
-using D20Tek.Spectre.Console.Extensions.Injection;
-using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console.Cli;
 
 namespace D20Tek.CountryService.Cli
 {
     internal class Startup : StartupBase
     {
-        public override ITypeRegistrar ConfigureServices(IServiceCollection services)
+        public override void ConfigureServices(ITypeRegistrar registrar)
         {
-            // Create a type registrar and register any dependencies.
-            // A type registrar is an adapter for a DI framework.
-
             // configure services here...
 
-            return new DependencyInjectionTypeRegistrar(services);
         }
 
         public override IConfigurator ConfigureCommands(IConfigurator config)

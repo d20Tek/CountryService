@@ -11,7 +11,7 @@
   <Import Project="..\D20Tek.CountryService.Common\D20Tek.CountryService.Common.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="D20Tek.Spectre.Console.Extensions" Version="1.0.1" />
+    <PackageReference Include="D20Tek.Spectre.Console.Extensions" Version="1.0.3" />
   </ItemGroup>
 
 </Project>
